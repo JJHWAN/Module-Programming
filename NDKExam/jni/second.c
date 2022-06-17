@@ -5,7 +5,6 @@
 #define LOGV(...)   __android_log_print(ANDROID_LOG_VERBOSE, LOG_TAG, __VA_ARGS__)
 
 extern int first(int x,int y);
-extern int second(int x, int y);
 
 jint JNICALL Java_org_example_ndk_NDKExam_add(JNIEnv *env, jobject this, jint x, jint y)
 {
@@ -13,10 +12,17 @@ jint JNICALL Java_org_example_ndk_NDKExam_add(JNIEnv *env, jobject this, jint x,
 	return first(x, y);
 }
 
-jint JNICALL Java_org_example_ndk_NDKExam_mul(JNIEnv *env, jobject this, jint x, jint y)
+jint JNICALL Java_org_example_ndk_NDKExam_mul(JNIEnv *env, jobject this)
 {
 	LOGV("log test %d", 1234);
-	return second(x, y);
+	jclass cls = (*env)->GetObjectClass(env, this);
+	jfieldID fidNumber = (*env)->GetStaticFieldID(env, cls, "x", "I");
+	jint x = (*env)->GetStaticIntField(env, this, fidNumber);
+
+	fidNumber = (*env)->GetStaticFieldID(env, cls, "y", "I");
+	jint y = (*env)->GetStaticIntField(env, this, fidNumber);
+
+	return (jint)(x*y);
 }
 
 

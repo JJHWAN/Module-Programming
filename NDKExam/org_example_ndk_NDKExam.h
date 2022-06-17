@@ -18,10 +18,10 @@ JNIEXPORT jint JNICALL Java_org_example_ndk_NDKExam_add
 /*
  * Class:     org_example_ndk_NDKExam
  * Method:    mul
- * Signature: (II)I
+ * Signature: ()I
  */
 JNIEXPORT jint JNICALL Java_org_example_ndk_NDKExam_mul
-  (JNIEnv *, jobject, jint, jint);
+  (JNIEnv *, jobject);
 
 /*
  * Class:     org_example_ndk_NDKExam

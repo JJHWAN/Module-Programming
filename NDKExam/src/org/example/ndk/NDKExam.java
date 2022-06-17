@@ -6,23 +6,19 @@ import android.view.Menu;
 import android.widget.TextView;
 
 public class NDKExam extends Activity {
+	
+	static int x = 42;
+	static int y = 1000;
 	public native int add(int x, int y);
-	public native int mul(int x, int y);
+	public native int mul();
 	public native void testString(String str);
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.main);
-        
         TextView tv = new TextView(this);
-        int x = 1000;
-        int y = 42;
-        
         System.loadLibrary("ndk-exam");
-        
-        //int z = add(x, y);
-        int z = mul(x, y);
-//        tv.setText("The sum of " + x + " and " + y + " is " + z);
+ 
+        int z = mul();
         tv.setText("The mul of " + x + " and " + y + " is " + z);
         setContentView(tv);
 
